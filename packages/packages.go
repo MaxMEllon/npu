@@ -15,8 +15,7 @@ type packages struct {
 
 // Packages - struct as package.json
 type Packages struct {
-	Dependencies    map[string]*semver.Semver
-	DevDependencies map[string]*semver.Semver
+	Modules map[string]*semver.Semver
 }
 
 // Read - read package.json
@@ -35,18 +34,17 @@ func Read(path string) (*Packages, error) {
 	}
 
 	result := &Packages{
-		Dependencies:    make(map[string]*semver.Semver),
-		DevDependencies: make(map[string]*semver.Semver),
+		Modules: make(map[string]*semver.Semver),
 	}
 
 	for k, v := range data.Dependencies {
 		dt, _ := semver.Parse(v)
-		result.Dependencies[k] = dt
+		result.Modules[k] = dt
 	}
 
 	for k, v := range data.DevDependencies {
 		dt, _ := semver.Parse(v)
-		result.DevDependencies[k] = dt
+		result.Modules[k] = dt
 	}
 
 	return result, nil
