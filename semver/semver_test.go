@@ -28,6 +28,16 @@ func TestParse(t *testing.T) {
 			data:     "23.1",
 			expected: &semver.Semver{Prefix: "", Major: 0, Miner: 0, Patch: 0, Valid: false, Raw: "23.1"},
 		},
+		/* TODOs
+		{
+			data: "*":
+			expected: &semver.Semver{Prefix: "*", Major: 0, Miner: 0, Patch: 0, Valid: true, Raw: "*"},
+		},
+		{
+			data: "22.x":
+			expected: &semver.Semver{Prefix: "", Major: 22, Miner: -1, Patch: -1, Valid: true, Raw: "22.x"},
+		},
+		*/
 	}
 
 	for _, s := range suite {
