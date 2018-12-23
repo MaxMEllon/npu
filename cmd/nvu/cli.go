@@ -23,5 +23,10 @@ func main() {
 			log.Println(err)
 		}
 		fmt.Printf("%s %s => %s\n", k, v.Raw, version)
+		versions, err := client.GetAllVersions(k)
+		for k := range versions {
+			fmt.Printf("%s, ", k)
+		}
+		fmt.Println("")
 	}
 }
