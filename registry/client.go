@@ -32,15 +32,19 @@ func NewClient(adapter ...string) *Client {
 	return client
 }
 
-// GetAllVersions = get all versions of package from registry
-func (c *Client) GetAllVersions(moduleName string) (map[string]string, error) {
-	url := c.registry + moduleName
+func getRequest(url string) (*http.Response, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failure create http request object %v", err)
 	}
 	client := &http.Client{Timeout: time.Duration(10) * time.Second}
-	resp, err := client.Do(req)
+	return client.Do(req)
+}
+
+// GetAllVersions = get all versions of package from registry
+func (c *Client) GetAllVersions(moduleName string) (map[string]string, error) {
+	url := c.registry + moduleName
+	resp, err := getRequest(url)
 	if err != nil {
 		return nil, fmt.Errorf("failure request to %s. detail: %v", c.registry, err)
 	}
@@ -57,12 +61,7 @@ func (c *Client) GetAllVersions(moduleName string) (map[string]string, error) {
 // GetLatest - get latest version of package from registry
 func (c *Client) GetLatest(moduleName string) (string, error) {
 	url := c.registry + moduleName + "/latest"
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return "", fmt.Errorf("failure create http request object %v", err)
-	}
-	client := &http.Client{Timeout: time.Duration(10) * time.Second}
-	resp, err := client.Do(req)
+	resp, err := getRequest(url)
 	if err != nil {
 		return "", fmt.Errorf("failure request to %s. detail: %v", c.registry, err)
 	}
