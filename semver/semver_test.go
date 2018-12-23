@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/maxmellon/npu/semver"
+	"github.com/maxmellon/nvu/semver"
 )
 
 func TestParse(t *testing.T) {

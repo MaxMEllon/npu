@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/maxmellon/npu/semver"
+	"github.com/maxmellon/nvu/semver"
 )
 
 type packages struct {

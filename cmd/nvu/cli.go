@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/maxmellon/npu/packages"
-	"github.com/maxmellon/npu/registry"
+	"github.com/maxmellon/nvu/packages"
+	"github.com/maxmellon/nvu/registry"
 )
 
 func main() {
