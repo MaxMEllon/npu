@@ -31,7 +31,7 @@ func TestParse(t *testing.T) {
 		/* TODOs
 		{
 			data: "*":
-			expected: &semver.Semver{Prefix: "*", Major: 0, Miner: 0, Patch: 0, Valid: true, Raw: "*"},
+			expected: &semver.Semver{Prefix: "*", Major: -1, Miner: -1, Patch: -1, Valid: true, Raw: "*"},
 		},
 		{
 			data: "22.x":

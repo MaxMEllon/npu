@@ -27,9 +27,7 @@ func Read(path string) (*Packages, error) {
 	}
 
 	data := new(packages)
-	err = json.Unmarshal(str, data)
-
-	if err != nil {
+	if err := json.Unmarshal(str, data); err != nil {
 		return nil, fmt.Errorf("failure parse json %s, detail: %v", str, err)
 	}
 
