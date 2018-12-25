@@ -9,3 +9,6 @@ debug-release: build
 
 run:
 	go run $(ENTRYPOINT) package.json
+
+ensure:
+	dep ensure
