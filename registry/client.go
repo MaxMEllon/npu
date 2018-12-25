@@ -37,8 +37,7 @@ func getRequest(url string) (*http.Response, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failure create http request object %v", err)
 	}
-	client := &http.Client{Timeout: time.Duration(10) * time.Second}
-	return client.Do(req)
+	return http.DefaultClient.Do(req)
 }
 
 // GetAllVersions = get all versions of package from registry
