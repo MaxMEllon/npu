@@ -7,6 +7,27 @@ import (
 	"github.com/maxmellon/nvu/semver"
 )
 
+func TestGreaterThan(t *testing.T) {
+	suite := []struct {
+		left     *semver.Semver
+		right    *semver.Semver
+		expected bool
+	}{
+		{
+			left:     &semver.Semver{Prefix: "", Major: 1, Miner: 1, Patch: 1, Valid: true, Raw: "1.1.1"},
+			right:    &semver.Semver{Prefix: "", Major: 1, Miner: 1, Patch: 2, Valid: true, Raw: "1.1.2"},
+			expected: true,
+		},
+	}
+
+	for _, s := range suite {
+		actual := s.left.GreaterThanPatch(s.right)
+		if actual != s.expected {
+			t.Errorf("expected %#v, but got %#v", s.expected, actual)
+		}
+	}
+}
+
 func TestParse(t *testing.T) {
 	suite := []struct {
 		data     string

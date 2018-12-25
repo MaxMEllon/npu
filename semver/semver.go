@@ -68,6 +68,11 @@ func (s *Semver) StrictEq(target *Semver) bool {
 	return s.Eq(target) && s.Valid == target.Valid && s.Prefix == target.Prefix && s.Raw == target.Raw
 }
 
+// GreaterThanPatch - 3.0.1 < 3.0.2 => true
+func (s *Semver) GreaterThanPatch(target *Semver) bool {
+	return s.Major == target.Major && s.Miner == target.Miner && s.Patch < target.Patch
+}
+
 func isValidSemver(version string) bool {
 	return len(strings.Split(version, ".")) == 3
 }
