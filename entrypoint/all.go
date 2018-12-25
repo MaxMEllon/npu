@@ -17,7 +17,10 @@ func All(path string) {
 	if err != nil {
 		panic(err)
 	}
-	client := registry.NewClient()
+	client, err := registry.NewClient()
+	if err != nil {
+		panic(err)
+	}
 	wg := &sync.WaitGroup{}
 	for k, v := range packages.Modules {
 		wg.Add(1)
